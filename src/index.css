@@ -2,4 +2,32 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #D8DBE2;
+}
+
+.panel {
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font: #363636;
+}
+
+.ugly-green-border {
+  border: 3px solid #6F7C12;
+}
+
+.inner {
+  margin: 30%;
+}
+
+.fake-button {
+  background: #BAFF29;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-weight: 400;
+  font-size: 4em;
+}
+
+.text-box {
+  margin: 30em;
 }
