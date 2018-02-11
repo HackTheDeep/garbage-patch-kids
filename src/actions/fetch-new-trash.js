@@ -10,7 +10,8 @@ const source = new Proj4js.Proj('EPSG:4326');
 
 // destination coordinates in meters, global spherical mercators projection
 // see http://spatialreference.org/ref/epsg/3785/
-const destination = new Proj4js.Proj('EPSG:3785');
+// note: number in link doesn't match the number in the spec, thanks deprecation of standards
+const destination = new Proj4js.Proj('EPSG:3857');
 
 // from https://stackoverflow.com/questions/6878761/javascript-how-to-create-random-longitude-and-latitudes
 function getRandomInRange(from, to, fixed) {
