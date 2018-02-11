@@ -37,11 +37,6 @@ const dispatchTick = () => {
 
   if (store.getState().time != newTick) {
     store.dispatch(tick(newTick));
-
-    if (newTick % 10 == 0) {
-      const randCity = CITIES[Math.floor(Math.random(0, CITIES.length))];
-      store.dispatch(fetchCityTrash(randCity, newTick, CANVAS_WIDTH, CANVAS_HEIGHT))
-    }
   }
 
   requestAnimationFrame(dispatchTick);
