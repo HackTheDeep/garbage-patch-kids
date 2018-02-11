@@ -31,17 +31,17 @@ body {
 .fake-button {
   background: #BAFF29;
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 1.5em;
+  font-weight: bold;
   text-align: center;
-  padding: 2rem;
-  margin: 0 6rem 4rem 6rem;
+  padding: 1.5rem;
+  margin: 0 8rem 4rem 8rem;
   cursor: url('./bag-cursor.gif'), auto;
   color: #6F7C12;
 }
 
 .heading {
-  font-weight: 600;
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 2rem;
   color: #6F7C12;
   text-transform: uppercase;

@@ -12,10 +12,16 @@ const StartView = ({ state, dispatch }) => {
       <div className='ugly-border inner'>
         <div className='text-container'>
           <div className='heading'>
+            welcome to garbage town
+          </div>
+          <div className='textbox'>
+            the world is full of garbage! o no!
+          </div>
+          <div className='heading'>
             how to play
           </div>
           <div className='textbox'>
-            this is where we tell you how to play! the world is full of garbage! o no!
+            this is where we tell you how to play! 
           </div>
         </div>
         <div className='fake-button' onClick={() => dispatch(startGame())}>
