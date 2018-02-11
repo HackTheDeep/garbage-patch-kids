@@ -10,24 +10,11 @@ const App = ({ state, dispatch }) => {
       <div onClick={() => dispatch(addPoints(1))}>
         Hi! Your score is {state.score}.
       </div>
-      <Game time={state.time} dispatch={dispatch} />
-      {StartView({ state, dispatch })}
       <div onClick={() => dispatch(fetchNewTrash())}>
         click me for a new trash element
-        <ul>
-          {state.trash.map(function (trashPoints, index) {
-            return <li key={index}>
-              <ol>
-                {trashPoints.map(function (trashElement, trashElementIndex){
-                  return <li key={trashElementIndex}>
-                  (Lat {trashElement.lat}, Lon {trashElement.lon}) - (X {trashElement.x}, Y {trashElement.y})
-                  </li>
-                })}
-              </ol>
-            </li>
-          })}
-        </ul>
       </div>
+      <Game time={state.time} dispatch={dispatch} trash={state.trash}/>
+      {StartView({ state, dispatch })}
     </div>
   );
 };

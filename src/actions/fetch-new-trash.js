@@ -2,6 +2,9 @@ import Proj4js from 'proj4';
 
 const LENGTH = 10;
 
+const MAX_LON_METERS = 20037508.3428;
+const MAX_LAT_METERS = 19971868.8804;
+
 // source coordinates in Longitude/Latitude, WGS84
 const source = new Proj4js.Proj('EPSG:4326');
 
@@ -23,8 +26,18 @@ function convertLatLon(lat, lon) {
   return {x: meterPoint.x, y: meterPoint.y};
 }
 
+function convertMetersToX(lonMeters, width) {
+  let adjustedMeters = lonMeters + MAX_LON_METERS;
+  return Math.floor((adjustedMeters / (MAX_LON_METERS * 2)) * width);
+}
+
+function convertMetersToY(latMeters, height) {
+  let adjustedMeters = latMeters + MAX_LAT_METERS;
+  return Math.floor((adjustedMeters / (MAX_LAT_METERS * 2)) * height);
+}
+
 export const fetchNewTrash = function () {
-  let lat = getRandomInRange(-90, 90, 3);
+  let lat = getRandomInRange(-85, 85, 3);
   let lon = getRandomInRange(-180, 180, 3);
 
   let point = convertLatLon(lat, lon);
@@ -33,11 +46,10 @@ export const fetchNewTrash = function () {
 
   for (let i = 0; i < LENGTH; i++) {
     trashPoints.push({
-      type: 'FETCH_NEW_TRASH',
       lat: lat,
       lon: lon,
-      x: point.x,
-      y: point.y
+      x: convertMetersToX(point.x, 300),
+      y: convertMetersToY(point.y, 300)
     });
 
     // move to random next point
