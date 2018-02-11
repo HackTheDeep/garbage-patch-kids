@@ -7,25 +7,37 @@ body {
 
 .panel {
   font-family: monaco, Consolas, "Lucida Console", monospace;
-  font: #363636;
+  font: #6F7C12;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.ugly-green-border {
-  border: 3px solid #6F7C12;
+.ugly-border {
+  border: 2rem solid #E59F71;
 }
 
 .inner {
-  margin: 30%;
+  margin: 3rem 10%;
+  width: 50%;
+  height: 50%;
 }
 
 .fake-button {
   background: #BAFF29;
   text-transform: uppercase;
+  font-size: 2rem;
+  text-align: center;
+  padding: 2rem;
+  margin: 3rem;
+  cursor: url('./bag-cursor.gif'), auto;	
 }
 
 .heading {
-  font-weight: 400;
-  font-size: 4em;
+  font-weight: 600;
+  font-size: 3em;
+  padding: 2rem;
+  margin: .5rem;
 }
 
 .text-box {
@@ -34,4 +46,9 @@ body {
 
 canvas {
   background: cornflowerblue;
+}
+
+.text-container {
+  padding: 5em;
+  text-align: center;
 }

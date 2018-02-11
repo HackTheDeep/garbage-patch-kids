@@ -4,7 +4,7 @@ import { start } from './actions/start.js'
 const StartView = ({ state, dispatch }) => {
   return (
     <div className='panel'>
-      <div className='ugly-green-border inner'>
+      <div className='ugly-border inner'>
         <div className='text-container'>
           <div className='heading'>
             how to play
