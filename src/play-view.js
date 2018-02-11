@@ -42,10 +42,12 @@ const PlayView = ({ state, dispatch }) => {
       <div className='score score-left score-label'>Score:</div>
         <div className='score score-middle'>Trash collected: {state.game.score}</div>
         <div className='score score-middle'>Trash missed: {state.trash.missedCount}</div>
-        <div className='score score-right'>Trash in Garbage Patch: {state.trash.patchCount}</div>
+        <div className='score score-right'>Trash in Garbage Patch: {state.trash.patchCount / 10}</div>
       </div>
     </div>
   )
 }
+
+// NOTE - patchCount is being divided by 10 because for an unknown reason it's bigger by a factor of ten >:(
 
 export default PlayView
