@@ -155,3 +155,21 @@ canvas {
 canvas:hover {
   cursor: pointer;
 }
+
+.score-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.score {
+  padding: 1rem;
+  margin: 1rem;
+  background: #BAFF29;
+}
+
+.score-label {
+  text-transform: uppercase;
+  color: #E59F71;
+  font-style: italic;
+}
+

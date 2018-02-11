@@ -34,12 +34,11 @@ const PlayView = ({ state, dispatch }) => {
       <div>
         <button onClick={() => dispatch(endGame())}>End game</button>
       </div>
-      <div>
-        Trash collected: {state.game.score}
-        <br/>
-        Trash missed: {state.trash.missedCount}
-        <br/>
-        Trash in Garbage Patch: {state.trash.patchCount}
+      <div className='score-container'>
+      <div className='score score-left score-label'>Score:</div>
+        <div className='score score-middle'>Trash collected: {state.game.score}</div>
+        <div className='score score-middle'>Trash missed: {state.trash.missedCount}</div>
+        <div className='score score-right'>Trash in Garbage Patch: {state.trash.patchCount}</div>
       </div>
     </div>
   )
