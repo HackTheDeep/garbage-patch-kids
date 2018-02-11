@@ -24,7 +24,7 @@ const StartView = ({ state, dispatch }) => {
             how to play
           </div>
           <div className='textbox'>
-            this is where we tell you how to play!
+            click on the garbage before it gets stuck in the Great Pacific Garbage Patch
           </div>
         </div>
         <div className='fake-button' onClick={() => dispatch(startGame())}>
