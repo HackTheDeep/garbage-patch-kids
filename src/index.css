@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .ugly-border {
@@ -154,11 +154,6 @@ canvas {
 
 canvas:hover {
   cursor: pointer;
-}
-
-.score-container {
-  display: flex;
-  flex-direction: row;
 }
 
 .score {

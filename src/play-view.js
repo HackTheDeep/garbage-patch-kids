@@ -8,24 +8,12 @@ const PlayView = ({ state, dispatch }) => {
   return (
     <div className='panel'>
       <Game time={state.time} dispatch={dispatch} trash={state.trash} mapWidth={CANVAS_WIDTH} mapHeight={CANVAS_HEIGHT}/>
-      <div>
-        <button onClick={() => dispatch(fetchNewTrash(state.time, CANVAS_WIDTH, CANVAS_HEIGHT))}>random</button>
-        {
-          CITIES.map((city, index) => (
-            <button key={index}
-                    onClick={() => dispatch(fetchCityTrash(city, state.time, CANVAS_WIDTH, CANVAS_HEIGHT))}>
-              {city}
-            </button>
-          ))
-        }
-      </div>
-      <div>
-        <button onClick={() => dispatch(endGame())}>End game</button>
-      </div>
       <div className='score-container'>
         <div className='score score-middle'>Trash collected: {state.game.score}</div>
         <div className='score score-middle'>Trash missed: {state.trash.missedCount}</div>
         <div className='score score-right'>Trash in Garbage Patch: {Math.floor(state.trash.patchCount / 10)}</div>
+        <button onClick={() => dispatch(endGame())}>End game</button>
+        <button onClick={() => dispatch(fetchNewTrash(state.time, CANVAS_WIDTH, CANVAS_HEIGHT))}>random</button>
       </div>
     </div>
   )
