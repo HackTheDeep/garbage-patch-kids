@@ -36,7 +36,7 @@ function convertMetersToY(latMeters, height) {
   return Math.floor((adjustedMeters / (MAX_LAT_METERS * 2)) * height);
 }
 
-export const fetchNewTrash = function () {
+export const fetchNewTrash = function (mapWidth, mapHeight) {
   let lat = getRandomInRange(-85, 85, 3);
   let lon = getRandomInRange(-180, 180, 3);
 
@@ -48,8 +48,8 @@ export const fetchNewTrash = function () {
     trashPoints.push({
       lat: lat,
       lon: lon,
-      x: convertMetersToX(point.x, 300),
-      y: convertMetersToY(point.y, 300)
+      x: convertMetersToX(point.x, mapWidth),
+      y: convertMetersToY(point.y, mapHeight)
     });
 
     // move to random next point

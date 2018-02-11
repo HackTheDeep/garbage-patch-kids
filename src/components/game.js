@@ -20,7 +20,8 @@ class Game extends React.Component {
   }
 
   render() {
-    return <canvas width={300} height={300} ref={canvas => this.canvas = canvas} />
+    const { mapWidth, mapHeight } = this.props;
+    return <canvas width={mapWidth} height={mapHeight} ref={canvas => this.canvas = canvas} />
   }
 }
 
