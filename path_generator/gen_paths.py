@@ -2,7 +2,7 @@ import argparse
 from datetime import timedelta
 import json
 import numpy as np
-from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4
+from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4, ErrorCode
 import posixpath
 import sys
 
@@ -14,12 +14,12 @@ locations = {
     "Rio": (-23.0, -40.0),
     "Tokyo": (34.7, 141.5),
     "Sydney": (-33.0, 154.0),
-    "San Francisco": (37.4, -123.8),
+    #"San Francisco": (37.4, -123.8),
     "LA": (32.1, -120.4),
     "Santiago": (-33.0, -83.2),
     "Cape Town": (-34.6, 17.12),
     "Mumbai": (19.0, 72.4),
-    "London": (53.9, 2.30),
+    #"London": (53.9, 2.30),
     "Hong Kong": (20.3, 116.6),
 }
 
@@ -34,8 +34,11 @@ def second_largest_divisor(n):
       return i
   return 1
 
-def DeleteParticle(particle, fieldset, time, dt):
+def delete_particle(particle, fieldset, time, dt):
   particle.delete()
+
+def trunc_float(f):
+  return int(float(f) * 100) / 100.0
 
 def main(gc_dir, output_file, num_paths, runtime, dt):
   filepaths = "%s/*.nc" % gc_dir
@@ -53,18 +56,18 @@ def main(gc_dir, output_file, num_paths, runtime, dt):
 
     pset = ParticleSet(fieldset=fieldset, pclass=JITParticle, lon=lons, lat=lats)
 
-    pset.show()
+    #pset.show()
 
     paths = [[] for i in range(num_paths)]
-    for d in range(runtime):
+    for d in range(runtime / dt):
       pset.execute(
           AdvectionRK4,
           runtime=timedelta(days=dt),
           dt=timedelta(days=dt),
-          recovery={ErrorCode.ErrorOutOfBounds: DeleteParticle})
+          recovery={ErrorCode.ErrorOutOfBounds: delete_particle})
 
       for (i, particle) in enumerate(pset.particles):
-        paths[i].append((float(particle.lat), float(particle.lon)))
+        paths[i].append((trunc_float(particle.lat), trunc_float(particle.lon)))
         i += 1
 
     output[loc_name] = paths
