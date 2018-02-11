@@ -13,8 +13,8 @@ const App = ({ state, dispatch }) => {
       <div onClick={() => dispatch(fetchNewTrash())}>
         click me for a new trash element
         <ul>
-          {state.trash.map(function(trashElement){
-            return <li>
+          {state.trash.map(function(trashElement, index){
+            return <li key={index}>
               (Lat {trashElement.lat}, Lon {trashElement.lon}) - (X {trashElement.x}, Y {trashElement.y})
             </li>;
           })}
