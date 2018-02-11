@@ -112,11 +112,11 @@ export const fetchCityTrash = function (city, startTime, mapWidth, mapHeight) {
 
 export const fetchNewTrash = function (startTime, mapWidth, mapHeight) {
   // force initial points to be near the garbage patch
-  // let lat = getRandomInRange(MIDDLE_OF_PATCH_LAT - (LAT_RADIUS * 2), MIDDLE_OF_PATCH_LAT + (LAT_RADIUS * 2));
-  // let lon = getRandomInRange(MIDDLE_OF_PATCH_LON - (LON_RADIUS * 2), MIDDLE_OF_PATCH_LON + (LON_RADIUS * 2));
+  let lat = getRandomInRange(MIDDLE_OF_PATCH_LAT - (LAT_RADIUS * 2), MIDDLE_OF_PATCH_LAT + (LAT_RADIUS * 2));
+  let lon = getRandomInRange(MIDDLE_OF_PATCH_LON - (LON_RADIUS * 2), MIDDLE_OF_PATCH_LON + (LON_RADIUS * 2));
 
-  let lat = getRandomInRange(-85, 85, 3);
-  let lon = getRandomInRange(-180, 180, 3);
+  // let lat = getRandomInRange(-85, 85, 3);
+  // let lon = getRandomInRange(-180, 180, 3);
 
   let trashPoints = [];
 
