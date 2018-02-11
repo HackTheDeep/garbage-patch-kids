@@ -8,9 +8,11 @@ export default (state = initialState, action) => {
     case 'ADD_POINTS':
       return { ...state, score: state.score + action.points }
     case 'START_GAME':
-      return { ...state, screen: 'play' }
+      return { ...state, screen: 'play' };
     case 'END_GAME':
-      return { ...state, screen: 'end' }
+      return { ...state, screen: 'end' };
+    case 'RESTART':
+      return { ...state, screen: 'start' };
     default:
       return state;
   }

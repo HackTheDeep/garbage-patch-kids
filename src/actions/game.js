@@ -10,3 +10,7 @@ export const startGame = () => ({
 export const endGame = () => ({
   type: 'END_GAME'
 });
+
+export const restart = () => ({
+  type: 'RESTART'
+});
