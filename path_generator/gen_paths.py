@@ -1,17 +1,20 @@
 import argparse
-from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4, ErrorCode
 from datetime import timedelta
+import json
 import numpy as np
+from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4, ErrorCode
+import posixpath
 import sys
 
-max_days = 365
+max_days = 200
 
 # list of lat lons corresponding to major coastal cities
 locations = {
-    "NYC": (40.5, -73.9) # NYC
+    "NYC": (40.5, -73.9),
+    "Lisbon": (38.0, -11.5),
 }
 
-def get_range(center, range_len, wiggle_factor):
+def get_range(center, range_len, wiggle_factor=100.0):
   range_min = int(center * wiggle_factor) - range_len / 2
   range_max = int(center * wiggle_factor) + range_len - (range_len / 2)
   return [x / wiggle_factor for x in range(range_min, range_max)]
@@ -22,39 +25,52 @@ def second_largest_divisor(n):
       return i
   return 1
 
-def main(gc_dir, output_dir, num_paths, path_len):
+def main(gc_dir, output_file, num_paths, dt):
   filepaths = "%s/*.nc" % gc_dir
   filenames = {'U': filepaths, 'V': filepaths}
   variables = {'U': 'eastward_eulerian_current_velocity', 'V': 'northward_eulerian_current_velocity'}
   dimensions = {'lat': 'lat', 'lon': 'lon', 'time': 'time'}
   fieldset = FieldSet.from_netcdf(filenames, variables, dimensions)
 
+  output = {}
+
   for (loc_name, loc) in locations.iteritems():
     lat_range = get_range(loc[0], second_largest_divisor(num_paths), 100.0)
     lon_range = get_range(loc[1], num_paths / second_largest_divisor(num_paths), 100.0)
-    lons, lats = np.meshgrid(lat_range, lon_range)
+    lats, lons = np.meshgrid(lat_range, lon_range)
 
     pset = ParticleSet(fieldset=fieldset, pclass=JITParticle, lon=lons, lat=lats)
 
     pset.show()
+    paths = [[] for i in range(num_paths)]
+    for d in range(max_days):
+      pset.execute(
+          AdvectionRK4,
+          runtime=timedelta(days=dt),
+          dt=timedelta(days=dt))
 
-    pset.execute(
-        AdvectionRK4,
-        runtime=timedelta(days=max_days),
-        dt=timedelta(days=(max_days / path_len)))
+      for (i, particle) in enumerate(pset.particles):
+        paths[i].append((float(particle.lat), float(particle.lon)))
+        i += 1
 
-    pset.show()
+    output[loc_name] = paths
+
+    pset.show(savefile=posixpath.join("../path_images", loc_name))
+
+  out = open(output_file, 'w')
+  out.write(json.dumps(output))
+
 
 
 if __name__ == "__main__":
   # Parse CLI arguments
   parser = argparse.ArgumentParser()
   parser.add_argument('--gc-dir', type=str)
-  parser.add_argument('--output-dir', type=str, default="path_data")
+  parser.add_argument('--output-file', type=str)
   parser.add_argument('--num-paths', type=int, default=5)
-  parser.add_argument('--path-len', type=int, default=5)
+  parser.add_argument('--dt', type=int, default=1)
   args = parser.parse_args()
 
-  main(args.gc_dir, args.output_dir, args.num_paths, args.path_len)
+  main(args.gc_dir, args.output_file, args.num_paths, args.dt)
 
 
