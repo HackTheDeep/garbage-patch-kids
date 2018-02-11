@@ -24,8 +24,11 @@ render();
 store.subscribe(render);
 
 const dispatchRandomTrash = () => {
-  const randcity = CITIES[Math.floor(Math.random() * CITIES.length)];
-  store.dispatch(fetchCityTrash(randcity, store.getState().time, CANVAS_WIDTH, CANVAS_HEIGHT))
+  const state = store.getState();
+  if (state.game.screen == 'play') {
+    const randcity = CITIES[Math.floor(Math.random() * CITIES.length)];
+    store.dispatch(fetchCityTrash(randcity,state.time, CANVAS_WIDTH, CANVAS_HEIGHT))
+  }
   setTimeout(dispatchRandomTrash, 1000 + (3000 * Math.random()));
 }
 dispatchRandomTrash();
