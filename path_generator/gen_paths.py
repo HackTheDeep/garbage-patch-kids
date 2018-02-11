@@ -6,12 +6,17 @@ from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4, ErrorCode
 import posixpath
 import sys
 
-max_days = 200
+max_days = 365 * 5
 
 # list of lat lons corresponding to major coastal cities
 locations = {
-    "NYC": (40.5, -73.9),
+    "NYC": (40.0, -72.9),
     "Lisbon": (38.0, -11.5),
+    "Seattle": (46.0, -133.0),
+    "Rio": (-23.0, -40.0),
+    "Tokyo": (34.7, 141.5),
+    "Sydney": (-33.0, 154.0),
+    "Test": (30.0, -130.0),
 }
 
 def get_range(center, range_len, wiggle_factor=100.0):
@@ -25,12 +30,15 @@ def second_largest_divisor(n):
       return i
   return 1
 
+def DeleteParticle(particle, fieldset, time, dt):
+  particle.delete()
+
 def main(gc_dir, output_file, num_paths, dt):
   filepaths = "%s/*.nc" % gc_dir
   filenames = {'U': filepaths, 'V': filepaths}
   variables = {'U': 'eastward_eulerian_current_velocity', 'V': 'northward_eulerian_current_velocity'}
   dimensions = {'lat': 'lat', 'lon': 'lon', 'time': 'time'}
-  fieldset = FieldSet.from_netcdf(filenames, variables, dimensions)
+  fieldset = FieldSet.from_netcdf(filenames, variables, dimensions, allow_time_extrapolation=True)
 
   output = {}
 
@@ -42,12 +50,14 @@ def main(gc_dir, output_file, num_paths, dt):
     pset = ParticleSet(fieldset=fieldset, pclass=JITParticle, lon=lons, lat=lats)
 
     pset.show()
+
     paths = [[] for i in range(num_paths)]
     for d in range(max_days):
       pset.execute(
           AdvectionRK4,
           runtime=timedelta(days=dt),
-          dt=timedelta(days=dt))
+          dt=timedelta(days=dt),
+          recovery={ErrorCode.ErrorOutOfBounds: DeleteParticle})
 
       for (i, particle) in enumerate(pset.particles):
         paths[i].append((float(particle.lat), float(particle.lon)))
