@@ -38,6 +38,7 @@ body {
   margin: 0 8rem 4rem 8rem;
   cursor: url('./bag-cursor.gif'), auto;
   color: #6F7C12;
+  z-index: 100;
 }
 
 .heading {
@@ -65,17 +66,17 @@ canvas {
   width: 20em;
   height: 20em;
   position: absolute;
-  z-index: 100;
+  z-index: -1;
   background: url('./bottle.gif') no-repeat;
   animation: fall 4s infinite linear;
   left: 0;
 }
 
 .trash-container-1 {
+  z-index: -1;
   width: 20em;
   height: 20em;
   position: absolute;
-  z-index: 100;
   background: url('./bottle.gif') no-repeat;
   animation: fall 5s infinite linear;
   left: 25%;
@@ -85,7 +86,7 @@ canvas {
   width: 20em;
   height: 20em;
   position: absolute;
-  z-index: 100;
+  z-index: -1;
   background: url('./bottle.gif') no-repeat;
   animation: fall 3s infinite linear;
   left: 70%;
@@ -95,7 +96,7 @@ canvas {
   width: 20em;
   height: 20em;
   position: absolute;
-  z-index: 100;
+  z-index: -1;
   background: url('./bottle.gif') no-repeat;
   animation: fall 6s infinite linear;
   left: 85%;
@@ -105,11 +106,42 @@ canvas {
   width: 20em;
   height: 20em;
   position: absolute;
-  z-index: 100;
+  z-index: -1;
   background: url('./bottle.gif') no-repeat;
-  animation: fall 6s infinite linear;
+  animation: fall 2s infinite linear;
   left: 10%;
 }
+
+.trash-container-5 {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: -1;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 10s infinite linear;
+  left: 33%;
+}
+
+.trash-container-6 {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: -1;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 9s infinite linear;
+  left: 45%;
+}
+
+.trash-container-7 {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: -1;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 6s infinite linear;
+  left: 60%;
+}
+
 
 @-webkit-keyframes fall {
   0% {

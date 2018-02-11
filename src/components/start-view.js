@@ -9,6 +9,9 @@ const StartView = ({ state, dispatch }) => {
       <span className='trash-container-2'></span>
       <span className='trash-container-3'></span>
       <span className='trash-container-4'></span>
+      <span className='trash-container-5'></span>
+      <span className='trash-container-6'></span>
+      <span className='trash-container-7'></span>
       <div className='ugly-border inner'>
         <div className='text-container'>
           <div className='heading'>
