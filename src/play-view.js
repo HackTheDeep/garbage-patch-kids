@@ -8,7 +8,7 @@ const CANVAS_HEIGHT = 430;
 
 const PlayView = ({ state, dispatch }) => {
   return (
-    <div className='panel game-panel'>
+    <div className='panel'>
       <Game time={state.time} dispatch={dispatch} trash={state.trash} mapWidth={CANVAS_WIDTH} mapHeight={CANVAS_HEIGHT}/>
       <div>
         <button onClick={() => dispatch(fetchNewTrash(CANVAS_WIDTH, CANVAS_HEIGHT))}>

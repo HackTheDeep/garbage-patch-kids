@@ -11,10 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.panel.game-panel {
-  display: block;
+  flex-direction: column;
 }
 
 .ugly-border {
