@@ -1,5 +1,5 @@
 import React from 'react'
-import { start } from './actions/start.js'
+import { startGame } from './actions/game.js'
 
 const StartView = ({ state, dispatch }) => {
   return (
@@ -13,7 +13,7 @@ const StartView = ({ state, dispatch }) => {
             this is where we tell you how to play! the world is full of garbage! o no!
           </div>
         </div>
-        <div className='fake-button' onClick={() => dispatch(start())}>
+        <div className='fake-button' onClick={() => dispatch(startGame())}>
           Start
         </div>
       </div>

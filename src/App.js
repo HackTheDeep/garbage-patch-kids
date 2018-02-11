@@ -1,22 +1,19 @@
 import React from 'react';
-import { addPoints } from './actions/score.js'
-import {fetchNewTrash} from "./actions/fetch-new-trash.js";
 import StartView from './start-view.js'
-import Game from './components/game.js'
+import EndView from './end-view.js'
+import PlayView from './play-view.js'
 
 const App = ({ state, dispatch }) => {
-  return (
-    <div>
-      <div onClick={() => dispatch(addPoints(1))}>
-        Hi! Your score is {state.score}.
-      </div>
-      <div onClick={() => dispatch(fetchNewTrash(600, 300))}>
-        click me for a new trash element
-      </div>
-      <Game time={state.time} dispatch={dispatch} trash={state.trash} mapWidth={600} mapHeight={300}/>
-      {StartView({ state, dispatch })}
-    </div>
-  );
+  switch (state.game.screen) {
+    case 'start':
+      return <StartView state={state} dispatch={dispatch} />;
+    case 'play':
+      return <PlayView state={state} dispatch={dispatch} />;
+    case 'end':
+      return <EndView state={state} dispatch={dispatch} />;
+    default:
+      return <div>Opps, something's broken</div>;
+  }
 };
 
 export default App;
