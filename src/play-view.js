@@ -10,10 +10,14 @@ const CITIES = [
   'Rio',
   'Tokyo',
   'Sydney',
-  'Test',
   'NYC',
   'Lisbon',
   'Seattle',
+  'LA',
+  'Santiago',
+  'Cape Town',
+  'Mumbai',
+  'Hong Kong',
 ];
 
 const PlayView = ({ state, dispatch }) => {
