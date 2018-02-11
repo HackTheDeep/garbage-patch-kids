@@ -38,9 +38,9 @@ const PlayView = ({ state, dispatch }) => {
       <div>
         Trash collected: {state.game.score}
         <br/>
-        Trash missed: {state.game.missedCount}
+        Trash missed: {state.trash.missedCount}
         <br/>
-        Trash in Garbage Patch: {state.game.patchCount}
+        Trash in Garbage Patch: {state.trash.patchCount}
       </div>
     </div>
   )
