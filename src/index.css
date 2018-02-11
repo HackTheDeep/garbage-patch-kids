@@ -13,6 +13,10 @@ body {
   align-items: center;
 }
 
+.panel.game-panel {
+  display: block;
+}
+
 .ugly-border {
   border: 2rem solid #E59F71;
 }
