@@ -46,7 +46,7 @@ class Game extends React.Component {
     const mouseX = e.clientX - offsetX;
     const mouseY = e.clientY - offsetY;
 
-    trash.forEach((trashElement, id) => {
+    trash.trashList.forEach((trashElement, id) => {
       let startTime = trashElement.startTime;
       let path = trashElement.trash;
       let index = time - startTime;

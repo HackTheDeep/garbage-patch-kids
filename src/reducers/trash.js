@@ -21,7 +21,7 @@ export default (trash = initialState, action) => {
 
       return {
         ...trash,
-        trashList: trash.trashList
+        trashList: newTrash,
       };
     case 'TICK':
       let patchCount = 0;
