@@ -102,14 +102,11 @@ export const fetchCityTrash = function (city, startTime, mapWidth, mapHeight) {
 
   let sanitized = removePointsAfterCaught(trashPoints);
 
-  if (trashPoints.length > sanitized.length) {
-    console.log(sanitized);
-  }
-
   return {
     type: 'FETCH_NEW_TRASH',
     startTime: startTime,
     trash: sanitized,
+    endsInPatch: trashPoints.length > sanitized.length,
   }
 };
 
@@ -140,14 +137,11 @@ export const fetchNewTrash = function (startTime, mapWidth, mapHeight) {
 
   let sanitized = removePointsAfterCaught(trashPoints);
 
-  if (trashPoints.length > sanitized.length) {
-    console.log(sanitized);
-  }
-
   return {
     type: 'FETCH_NEW_TRASH',
     startTime: startTime,
     trash: sanitized,
+    endsInPatch: trashPoints.length > sanitized.length,
   }
 };
 
