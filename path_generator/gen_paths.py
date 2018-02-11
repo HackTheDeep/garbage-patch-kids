@@ -2,11 +2,9 @@ import argparse
 from datetime import timedelta
 import json
 import numpy as np
-from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4, ErrorCode
+from parcels import FieldSet, ParticleSet, JITParticle, AdvectionRK4
 import posixpath
 import sys
-
-max_days = 365 * 5
 
 # list of lat lons corresponding to major coastal cities
 locations = {
@@ -16,7 +14,13 @@ locations = {
     "Rio": (-23.0, -40.0),
     "Tokyo": (34.7, 141.5),
     "Sydney": (-33.0, 154.0),
-    "Test": (30.0, -130.0),
+    "San Francisco": (37.4, -123.8),
+    "LA": (32.1, -120.4),
+    "Santiago": (-33.0, -83.2),
+    "Cape Town": (-34.6, 17.12),
+    "Mumbai": (19.0, 72.4),
+    "London": (53.9, 2.30),
+    "Hong Kong": (20.3, 116.6),
 }
 
 def get_range(center, range_len, wiggle_factor=100.0):
@@ -33,7 +37,7 @@ def second_largest_divisor(n):
 def DeleteParticle(particle, fieldset, time, dt):
   particle.delete()
 
-def main(gc_dir, output_file, num_paths, dt):
+def main(gc_dir, output_file, num_paths, runtime, dt):
   filepaths = "%s/*.nc" % gc_dir
   filenames = {'U': filepaths, 'V': filepaths}
   variables = {'U': 'eastward_eulerian_current_velocity', 'V': 'northward_eulerian_current_velocity'}
@@ -52,7 +56,7 @@ def main(gc_dir, output_file, num_paths, dt):
     pset.show()
 
     paths = [[] for i in range(num_paths)]
-    for d in range(max_days):
+    for d in range(runtime):
       pset.execute(
           AdvectionRK4,
           runtime=timedelta(days=dt),
@@ -77,10 +81,11 @@ if __name__ == "__main__":
   parser = argparse.ArgumentParser()
   parser.add_argument('--gc-dir', type=str)
   parser.add_argument('--output-file', type=str)
-  parser.add_argument('--num-paths', type=int, default=5)
+  parser.add_argument('--num-paths', type=int, default=100)
+  parser.add_argument('--runtime', type=int, default=365 * 10)
   parser.add_argument('--dt', type=int, default=1)
   args = parser.parse_args()
 
-  main(args.gc_dir, args.output_file, args.num_paths, args.dt)
+  main(args.gc_dir, args.output_file, args.num_paths, args.runtime, args.dt)
 
 
