@@ -11,8 +11,8 @@ export const MAX_LAT_METERS = 19971868.8804;
 // http://latitude.to/articles-by-country/general/337/great-pacific-garbage-patch
 const MIDDLE_OF_PATCH_LAT = 38.0;
 const MIDDLE_OF_PATCH_LON = -145.0;
-const LON_RADIUS = 10.0;
-const LAT_RADIUS = 3.5;
+const LON_RADIUS = 15.0;
+const LAT_RADIUS = 5;
 
 // source coordinates in Longitude/Latitude, WGS84
 const source = new Proj4js.Proj('EPSG:4326');

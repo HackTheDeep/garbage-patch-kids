@@ -30,7 +30,7 @@ class Game extends React.Component {
 
       if (trashElement.endsInPatch && index >= length) {
         ctx.drawImage(img, path[length - 1].x, path[length - 1].y, 10, 10);
-      } else {
+      } else if (path[index]) {
         ctx.drawImage(img, path[index].x, path[index].y, width, height);
       }
     });

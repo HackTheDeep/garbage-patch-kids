@@ -1,5 +1,7 @@
 import React from 'react'
 import { startGame } from '../actions/game.js'
+import { CANVAS_WIDTH, CANVAS_HEIGHT } from '../consts.js';
+import { fetchCityTrash } from "../actions/trash.js";
 
 const StartView = ({ state, dispatch }) => {
   return (
@@ -27,7 +29,10 @@ const StartView = ({ state, dispatch }) => {
             click on the garbage before it gets stuck in the Great Pacific Garbage Patch
           </div>
         </div>
-        <div className='fake-button' onClick={() => dispatch(startGame())}>
+        <div className='fake-button' onClick={() => {
+          dispatch(startGame())
+          dispatch(fetchCityTrash('NYC',state.time, CANVAS_WIDTH, CANVAS_HEIGHT))
+        }}>
           Start
         </div>
       </div>

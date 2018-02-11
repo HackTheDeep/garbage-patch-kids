@@ -1,5 +1,5 @@
 const initialState = {
-  screen: 'play',
+  screen: 'start',
   score: 0,
 };
 
