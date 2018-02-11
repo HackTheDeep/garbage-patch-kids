@@ -18,7 +18,7 @@ class Game extends React.Component {
   componentDidUpdate() {
     const canvas = this.canvas;
     const ctx = canvas.getContext('2d');
-    const { time, trash, dispatch } = this.props;
+    const { time, trash } = this.props;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
