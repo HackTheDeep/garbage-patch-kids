@@ -1,4 +1,3 @@
-
 const initialState = {
   screen: 'start',
   score: 0

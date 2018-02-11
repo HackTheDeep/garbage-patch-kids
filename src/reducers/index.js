@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import trash from './trash-list.js';
+import trash from './trash.js';
 import time from './time.js';
 import game from './game.js';
 

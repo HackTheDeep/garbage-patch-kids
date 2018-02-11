@@ -22,7 +22,7 @@ store.subscribe(render);
 const startTime = (new Date()).getTime();
 const dispatchTick = () => {
   const now = (new Date()).getTime();
-  store.dispatch(tick(Math.floor((now - startTime) / 1000 * 60)));
+  store.dispatch(tick(Math.floor((now - startTime) / 1000 * 60 / 100)));
   requestAnimationFrame(dispatchTick);
 };
 requestAnimationFrame(dispatchTick);

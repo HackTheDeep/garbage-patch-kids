@@ -1,6 +1,6 @@
 import React from 'react'
 import { endGame } from './actions/game.js'
-import { fetchNewTrash } from "./actions/fetch-new-trash.js";
+import { fetchNewTrash } from "./actions/trash.js";
 import Game from './components/game.js'
 
 const CANVAS_WIDTH = 800;

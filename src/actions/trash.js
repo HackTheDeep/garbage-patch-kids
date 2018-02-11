@@ -63,3 +63,8 @@ export const fetchNewTrash = function (mapWidth, mapHeight) {
     trash: trashPoints,
   }
 };
+
+export const removeTrash = id => ({
+  type: 'REMOVE_TRASH',
+  id
+});

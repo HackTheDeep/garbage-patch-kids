@@ -119,3 +119,7 @@ canvas {
     top:90%
   }
 }
+
+canvas:hover {
+  cursor: pointer;
+}

@@ -12,7 +12,7 @@ const App = ({ state, dispatch }) => {
     case 'end':
       return <EndView state={state} dispatch={dispatch} />;
     default:
-      return <div>Opps, something's broken</div>;
+      return <div>Oops, something's broken</div>;
   }
 };
 
