@@ -1,6 +1,6 @@
 export default (trash = [], action) => {
   switch (action.type) {
-    case 'FETCH_NEW_TRASH':
+    case 'ADD_TRASH':
       return [...trash, {
         startTime: action.startTime,
         trash: action.trash,
