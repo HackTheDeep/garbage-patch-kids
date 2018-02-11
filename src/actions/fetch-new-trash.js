@@ -1,6 +1,6 @@
 import Proj4js from 'proj4';
 
-const LENGTH = 10;
+const LENGTH = 1000;
 
 const MAX_LON_METERS = 20037508.3428;
 const MAX_LAT_METERS = 19971868.8804;
@@ -40,11 +40,11 @@ export const fetchNewTrash = function (mapWidth, mapHeight) {
   let lat = getRandomInRange(-85, 85, 3);
   let lon = getRandomInRange(-180, 180, 3);
 
-  let point = convertLatLon(lat, lon);
-
   let trashPoints = [];
 
   for (let i = 0; i < LENGTH; i++) {
+    let point = convertLatLon(lat, lon);
+
     trashPoints.push({
       lat: lat,
       lon: lon,
@@ -53,8 +53,8 @@ export const fetchNewTrash = function (mapWidth, mapHeight) {
     });
 
     // move to random next point
-    lat = getRandomInRange(lat - 1, lat + 1, 3);
-    lon = getRandomInRange(lon - 1, lon + 1, 3);
+    lat = getRandomInRange(Math.max(-85, lat - 3), Math.min(85, lat + 3), 3);
+    lon = getRandomInRange(Math.max(-180, lon - 3), Math.min(180, lon + 3), 3);
   }
 
   return {
