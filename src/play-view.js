@@ -1,24 +1,8 @@
 import React from 'react'
 import { endGame } from './actions/game.js'
-import { fetchCityTrash, fetchNewTrash, MAX_LAT_METERS, MAX_LON_METERS } from "./actions/trash.js";
+import { fetchCityTrash, fetchNewTrash } from "./actions/trash.js";
 import Game from './components/game.js'
-
-const CANVAS_WIDTH = 640;
-const CANVAS_HEIGHT = CANVAS_WIDTH * MAX_LAT_METERS / MAX_LON_METERS;
-
-const CITIES = [
-  'Rio',
-  'Tokyo',
-  'Sydney',
-  'NYC',
-  'Lisbon',
-  'Seattle',
-  'LA',
-  'Santiago',
-  'Cape Town',
-  'Mumbai',
-  'Hong Kong',
-];
+import { CANVAS_WIDTH, CANVAS_HEIGHT, CITIES } from './consts.js';
 
 const PlayView = ({ state, dispatch }) => {
   return (
