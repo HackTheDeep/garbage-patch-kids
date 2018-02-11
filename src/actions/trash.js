@@ -5,8 +5,8 @@ import trashJson from './../data/paths_by_city';
 
 const LENGTH = 1000;
 
-const MAX_LON_METERS = 20037508.3428;
-const MAX_LAT_METERS = 19971868.8804;
+export const MAX_LON_METERS = 20037508.3428;
+export const MAX_LAT_METERS = 19971868.8804;
 
 // http://latitude.to/articles-by-country/general/337/great-pacific-garbage-patch
 const MIDDLE_OF_PATCH_LAT = 38.0;

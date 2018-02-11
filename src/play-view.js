@@ -1,11 +1,10 @@
 import React from 'react'
 import { endGame } from './actions/game.js'
-import { fetchCityTrash, fetchNewTrash } from "./actions/trash.js";
+import { fetchCityTrash, fetchNewTrash, MAX_LAT_METERS, MAX_LON_METERS } from "./actions/trash.js";
 import Game from './components/game.js'
 
-// 6460 x 3480
-const CANVAS_WIDTH = 1000;
-const CANVAS_HEIGHT = 500;
+const CANVAS_WIDTH = 640;
+const CANVAS_HEIGHT = CANVAS_WIDTH * MAX_LAT_METERS / MAX_LON_METERS;
 
 const CITIES = [
   'Rio',
