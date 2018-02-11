@@ -7,7 +7,7 @@ body {
 
 .panel {
   font-family: monaco, Consolas, "Lucida Console", monospace;
-  font: #6F7C12;
+  color: #6F7C12;
   display: flex;
   justify-content: center;
   align-items: center;
