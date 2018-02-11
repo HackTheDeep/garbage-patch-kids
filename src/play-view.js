@@ -11,7 +11,7 @@ const PlayView = ({ state, dispatch }) => {
     <div className='panel'>
       <Game time={state.time} dispatch={dispatch} trash={state.trash} mapWidth={CANVAS_WIDTH} mapHeight={CANVAS_HEIGHT}/>
       <div>
-        <button onClick={() => dispatch(fetchNewTrash(CANVAS_WIDTH, CANVAS_HEIGHT))}>
+        <button onClick={() => dispatch(fetchNewTrash(state.time, CANVAS_WIDTH, CANVAS_HEIGHT))}>
           click me for a new trash element
         </button>
         <button onClick={() => dispatch(endGame())}>End game</button>

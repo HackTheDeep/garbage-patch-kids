@@ -22,10 +22,17 @@ class Game extends React.Component {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    trash.forEach((path, id) => {
-      const t = time % path.length;
-      const { x, y } = path[t];
-      ctx.drawImage(img, x, y, width, height);
+    trash.forEach((trashElement) => {
+      let startTime = trashElement.startTime;
+      let path = trashElement.trash;
+      let length = path.length;
+      let index = time - startTime;
+
+      if (index < length) {
+        ctx.drawImage(img, path[index].x, path[index].y, 20, 20);
+      } else {
+        ctx.drawImage(img, path[length - 1].x, path[length - 1].y, 20, 20);
+      }
     });
   }
 

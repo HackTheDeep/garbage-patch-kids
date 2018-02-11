@@ -1,9 +1,16 @@
 import Proj4js from 'proj4';
+import pointInEllipse from 'point-in-ellipse';
 
 const LENGTH = 1000;
 
 const MAX_LON_METERS = 20037508.3428;
 const MAX_LAT_METERS = 19971868.8804;
+
+// http://latitude.to/articles-by-country/general/337/great-pacific-garbage-patch
+const MIDDLE_OF_PATCH_LAT = 38.0;
+const MIDDLE_OF_PATCH_LON = -145.0;
+const LON_RADIUS = 10.0;
+const LAT_RADIUS = 3.5;
 
 // source coordinates in Longitude/Latitude, WGS84
 const source = new Proj4js.Proj('EPSG:4326');
@@ -37,7 +44,45 @@ function convertMetersToY(latMeters, height) {
   return Math.floor((adjustedMeters / (MAX_LAT_METERS * 2)) * height);
 }
 
-export const fetchNewTrash = function (mapWidth, mapHeight) {
+function isCaughtInPatch(trashPoint) {
+  return pointInEllipse(
+    [trashPoint.lon, trashPoint.lat],
+    [MIDDLE_OF_PATCH_LON, MIDDLE_OF_PATCH_LAT],
+    LON_RADIUS, LAT_RADIUS
+  );
+}
+
+function removePointsAfterCaught(trashPoints) {
+  let sanitized = [];
+
+  const MIN_ITEMS_IN_PATCH = 2;
+
+  let itemsInPatch = 0;
+
+  for (let i = 0; i < trashPoints.length; i++) {
+    let trashPoint = trashPoints[i];
+
+    if (isCaughtInPatch(trashPoint)) {
+      itemsInPatch++;
+    } else {
+      itemsInPatch = 0;
+    }
+
+    if (itemsInPatch <= MIN_ITEMS_IN_PATCH) {
+      sanitized.push(trashPoint);
+    } else {
+      return sanitized;
+    }
+  }
+
+  return sanitized;
+}
+
+export const fetchNewTrash = function (startTime, mapWidth, mapHeight) {
+  // force initial points to be near the garbage patch
+  // let lat = getRandomInRange(MIDDLE_OF_PATCH_LAT - (LAT_RADIUS * 2), MIDDLE_OF_PATCH_LAT + (LAT_RADIUS * 2));
+  // let lon = getRandomInRange(MIDDLE_OF_PATCH_LON - (LON_RADIUS * 2), MIDDLE_OF_PATCH_LON + (LON_RADIUS * 2));
+
   let lat = getRandomInRange(-85, 85, 3);
   let lon = getRandomInRange(-180, 180, 3);
 
@@ -60,7 +105,8 @@ export const fetchNewTrash = function (mapWidth, mapHeight) {
 
   return {
     type: 'FETCH_NEW_TRASH',
-    trash: trashPoints,
+    startTime: startTime,
+    trash: removePointsAfterCaught(trashPoints),
   }
 };
 
