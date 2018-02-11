@@ -45,7 +45,8 @@ body {
 }
 
 canvas {
-  background: cornflowerblue;
+  background-image: url('/world-map.png');
+  background-size: 100% 100%;
 }
 
 .text-container {
