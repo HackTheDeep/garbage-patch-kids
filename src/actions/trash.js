@@ -1,6 +1,8 @@
 import Proj4js from 'proj4';
 import pointInEllipse from 'point-in-ellipse';
 
+import trashJson from './../data/paths_by_city';
+
 const LENGTH = 1000;
 
 const MAX_LON_METERS = 20037508.3428;
@@ -78,6 +80,40 @@ function removePointsAfterCaught(trashPoints) {
   return sanitized;
 }
 
+export const fetchCityTrash = function (startTime, mapWidth, mapHeight) {
+  let city = 'Test';
+
+  let trashElements = trashJson[city][startTime%5];
+
+  let trashPoints = [];
+
+  trashElements.forEach(trashElement => {
+    let lat = trashElement[0];
+    let lon = trashElement[1];
+
+    let point = convertLatLon(lat, lon);
+
+    trashPoints.push({
+      lat: lat,
+      lon: lon,
+      x: convertMetersToX(point.x, mapWidth),
+      y: convertMetersToY(point.y, mapHeight)
+    });
+  });
+
+  let sanitized = removePointsAfterCaught(trashPoints);
+
+  if (trashPoints.length > sanitized.length) {
+    console.log(sanitized);
+  }
+
+  return {
+    type: 'FETCH_NEW_TRASH',
+    startTime: startTime,
+    trash: sanitized,
+  }
+};
+
 export const fetchNewTrash = function (startTime, mapWidth, mapHeight) {
   // force initial points to be near the garbage patch
   // let lat = getRandomInRange(MIDDLE_OF_PATCH_LAT - (LAT_RADIUS * 2), MIDDLE_OF_PATCH_LAT + (LAT_RADIUS * 2));
@@ -103,10 +139,16 @@ export const fetchNewTrash = function (startTime, mapWidth, mapHeight) {
     lon = getRandomInRange(Math.max(-180, lon - 3), Math.min(180, lon + 3), 3);
   }
 
+  let sanitized = removePointsAfterCaught(trashPoints);
+
+  if (trashPoints.length > sanitized.length) {
+    console.log(sanitized);
+  }
+
   return {
     type: 'FETCH_NEW_TRASH',
     startTime: startTime,
-    trash: removePointsAfterCaught(trashPoints),
+    trash: sanitized,
   }
 };
 
