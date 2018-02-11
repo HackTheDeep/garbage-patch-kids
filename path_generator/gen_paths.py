@@ -50,12 +50,12 @@ def main(gc_dir, output_file, num_paths, dt):
           dt=timedelta(days=dt))
 
       for (i, particle) in enumerate(pset.particles):
-        paths[i].append((particle.lat, particle.lon))
+        paths[i].append((float(particle.lat), float(particle.lon)))
         i += 1
 
     output[loc_name] = paths
 
-    #pset.show(savefile=posixpath.join(output_dir, loc_name))
+    pset.show(savefile=posixpath.join("../path_images", loc_name))
 
   out = open(output_file, 'w')
   out.write(json.dumps(output))
