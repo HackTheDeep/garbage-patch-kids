@@ -3,8 +3,9 @@ import { endGame } from './actions/game.js'
 import { fetchCityTrash, fetchNewTrash } from "./actions/trash.js";
 import Game from './components/game.js'
 
-const CANVAS_WIDTH = 800;
-const CANVAS_HEIGHT = 430;
+// 6460 x 3480
+const CANVAS_WIDTH = 1000;
+const CANVAS_HEIGHT = 500;
 
 const CITIES = [
   'Rio',
@@ -13,7 +14,7 @@ const CITIES = [
   'Test',
   'NYC',
   'Lisbon',
-  'Seattle'
+  'Seattle',
 ];
 
 const PlayView = ({ state, dispatch }) => {
@@ -33,6 +34,13 @@ const PlayView = ({ state, dispatch }) => {
       </div>
       <div>
         <button onClick={() => dispatch(endGame())}>End game</button>
+      </div>
+      <div>
+        Trash collected: {state.game.score}
+        <br/>
+        Trash missed: {state.game.missedCount}
+        <br/>
+        Trash in Garbage Patch: {state.game.patchCount}
       </div>
     </div>
   )
