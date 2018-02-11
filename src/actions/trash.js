@@ -42,7 +42,7 @@ function convertMetersToX(lonMeters, width) {
 }
 
 function convertMetersToY(latMeters, height) {
-  let adjustedMeters = latMeters + MAX_LAT_METERS;
+  let adjustedMeters = (-1 * latMeters) + MAX_LAT_METERS;
   return Math.floor((adjustedMeters / (MAX_LAT_METERS * 2)) * height);
 }
 
@@ -80,10 +80,9 @@ function removePointsAfterCaught(trashPoints) {
   return sanitized;
 }
 
-export const fetchCityTrash = function (startTime, mapWidth, mapHeight) {
-  let city = 'Test';
-
-  let trashElements = trashJson[city][startTime%5];
+export const fetchCityTrash = function (city, startTime, mapWidth, mapHeight) {
+  let trashElementList = trashJson[city];
+  let trashElements = trashElementList[startTime % (trashElementList.length)];
 
   let trashPoints = [];
 
