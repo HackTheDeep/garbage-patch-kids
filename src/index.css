@@ -53,7 +53,7 @@ body {
 }
 
 canvas {
-  background-image: url('/world-map.png');
+  background-image: url('./world-map.png');
   background-size: 100% 100%;
 }
 
