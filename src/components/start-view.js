@@ -4,6 +4,10 @@ import { startGame } from './actions/game.js'
 const StartView = ({ state, dispatch }) => {
   return (
     <div className='panel'>
+      <span className='trash-container'></span>
+      <span className='trash-container-1'></span>
+      <span className='trash-container-2'></span>
+      <span className='trash-container-3'></span>
       <div className='ugly-border inner'>
         <div className='text-container'>
           <div className='heading'>

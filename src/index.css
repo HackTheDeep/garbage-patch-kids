@@ -7,7 +7,7 @@ body {
 
 .panel {
   font-family: monaco, Consolas, "Lucida Console", monospace;
-  color: #6F7C12;
+  color: #363636;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,8 +30,9 @@ body {
   font-size: 2rem;
   text-align: center;
   padding: 2rem;
-  margin: 3rem;
-  cursor: url('./bag-cursor.gif'), auto;	
+  margin: 0 6rem 4rem 6rem;
+  cursor: url('./bag-cursor.gif'), auto;
+  color: #6F7C12;
 }
 
 .heading {
@@ -53,4 +54,53 @@ canvas {
 .text-container {
   padding: 5em;
   text-align: center;
+}
+
+.trash-container {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: 100;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 4s infinite linear;
+  left: 0;
+}
+
+.trash-container-1 {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: 100;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 5s infinite linear;
+  left: 15%;
+}
+
+.trash-container-2 {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: 100;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 3s infinite linear;
+  left: 70%;
+}
+
+.trash-container-3 {
+  width: 20em;
+  height: 20em;
+  position: absolute;
+  z-index: 100;
+  background: url('./bottle.gif') no-repeat;
+  animation: fall 6s infinite linear;
+  left: 85%;
+}
+
+@-webkit-keyframes fall {
+  0% {
+    top:-10%
+  }
+  100% {
+    top:110%
+  }
 }
