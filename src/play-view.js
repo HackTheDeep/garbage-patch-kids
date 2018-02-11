@@ -41,7 +41,7 @@ const PlayView = ({ state, dispatch }) => {
       <div className='score-container'>
         <div className='score score-middle'>Trash collected: {state.game.score}</div>
         <div className='score score-middle'>Trash missed: {state.trash.missedCount}</div>
-        <div className='score score-right'>Trash in Garbage Patch: {state.trash.patchCount / 10}</div>
+        <div className='score score-right'>Trash in Garbage Patch: {Math.floor(state.trash.patchCount / 10)}</div>
       </div>
     </div>
   )
