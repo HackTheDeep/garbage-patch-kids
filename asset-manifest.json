@@ -1,6 +1,6 @@
 {
-  "main.css": "static/css/main.c92562e2.css",
-  "main.css.map": "static/css/main.c92562e2.css.map",
+  "main.css": "static/css/main.a00f6ac7.css",
+  "main.css.map": "static/css/main.a00f6ac7.css.map",
   "main.js": "static/js/main.e6c4a179.js",
   "main.js.map": "static/js/main.e6c4a179.js.map",
   "static/media/bag-black.png": "static/media/bag-black.2dadbfef.png",
@@ -10,5 +10,6 @@
   "static/media/bag-purple.png": "static/media/bag-purple.eff611a1.png",
   "static/media/bag-red.png": "static/media/bag-red.30fe5e63.png",
   "static/media/bag-yellow.png": "static/media/bag-yellow.0f873589.png",
-  "static/media/bottle.gif": "static/media/bottle.2f40edb6.gif"
+  "static/media/bottle.gif": "static/media/bottle.2f40edb6.gif",
+  "static/media/world-map.png": "static/media/world-map.68ed08d9.png"
 }
