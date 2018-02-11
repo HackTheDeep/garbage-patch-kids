@@ -28,10 +28,10 @@ class Game extends React.Component {
       let length = path.length;
       let index = time - startTime;
 
-      if (index <= length - 1) {
-        ctx.drawImage(img, path[index].x, path[index].y, width, height);
-      } else if (trashElement.endsInPatch) {
+      if (trashElement.endsInPatch && index >= length) {
         ctx.drawImage(img, path[length - 1].x, path[length - 1].y, 10, 10);
+      } else {
+        ctx.drawImage(img, path[index].x, path[index].y, width, height);
       }
     });
   }
