@@ -1,7 +1,7 @@
 import React from 'react';
 import duck from '../duck.png';
 import { removeTrash } from '../actions/trash.js';
-import { addPoints } from '../actions/game.js';
+import { addPoints, addMissedPoints } from '../actions/game.js';
 
 const img = new Image();
 img.src = duck;
@@ -18,7 +18,7 @@ class Game extends React.Component {
   componentDidUpdate() {
     const canvas = this.canvas;
     const ctx = canvas.getContext('2d');
-    const { time, trash } = this.props;
+    const { time, trash, dispatch } = this.props;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -28,10 +28,16 @@ class Game extends React.Component {
       let length = path.length;
       let index = time - startTime;
 
-      if (index < length) {
-        ctx.drawImage(img, path[index].x, path[index].y, 20, 20);
-      } else {
-        ctx.drawImage(img, path[length - 1].x, path[length - 1].y, 20, 20);
+      if (index <= length - 1) {
+        ctx.drawImage(img, path[index].x, path[index].y, 30, 30);
+      } else if (trashElement.endsInPatch) {
+        ctx.drawImage(img, path[length - 1].x, path[length - 1].y, 10, 10);
+      }
+
+      if (index === length) {
+        console.log('missed a piece of trash :(');
+        // TODO - figure out how to update this score without re-drawing the canvas
+        // dispatch(addMissedPoints(1, trashElement.endsInPatch));
       }
     });
   }
