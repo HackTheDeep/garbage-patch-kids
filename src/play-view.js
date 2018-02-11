@@ -1,8 +1,8 @@
 import React from 'react'
 import { endGame } from './actions/game.js'
-import { fetchCityTrash, fetchNewTrash } from "./actions/trash.js";
+import { fetchNewTrash } from "./actions/trash.js";
 import Game from './components/game.js'
-import { CANVAS_WIDTH, CANVAS_HEIGHT, CITIES } from './consts.js';
+import { CANVAS_WIDTH, CANVAS_HEIGHT } from './consts.js';
 
 const PlayView = ({ state, dispatch }) => {
   return (
