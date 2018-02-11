@@ -1,12 +1,12 @@
 const initialState = {
-  screen: 'start',
+  screen: 'play',
   score: 0
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_POINT':
-      return { ...state, score: state.score + 1 }
+    case 'ADD_POINTS':
+      return { ...state, score: state.score + action.points }
     case 'START_GAME':
       return { ...state, screen: 'play' }
     case 'END_GAME':
