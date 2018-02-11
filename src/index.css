@@ -31,3 +31,7 @@ body {
 .text-box {
   margin: 30em;
 }
+
+canvas {
+  background: cornflowerblue;
+}
