@@ -6,8 +6,8 @@ import { addPoints, addMissedPoints } from '../actions/game.js';
 const img = new Image();
 img.src = duck;
 
-const width = 20;
-const height = 20;
+const width = 30;
+const height = 30;
 
 class Game extends React.Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class Game extends React.Component {
       let index = time - startTime;
 
       if (index <= length - 1) {
-        ctx.drawImage(img, path[index].x, path[index].y, 30, 30);
+        ctx.drawImage(img, path[index].x, path[index].y, width, height);
       } else if (trashElement.endsInPatch) {
         ctx.drawImage(img, path[length - 1].x, path[length - 1].y, 10, 10);
       }
@@ -52,14 +52,18 @@ class Game extends React.Component {
     const mouseX = e.clientX - offsetX;
     const mouseY = e.clientY - offsetY;
 
-    trash.forEach((path, id) => {
-      const t = time % path.length;
-      const { x, y } = path[t];
+    trash.forEach((trashElement, id) => {
+      let startTime = trashElement.startTime;
+      let path = trashElement.trash;
+      let index = time - startTime;
 
-      if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) {
-        console.log('click');
-        dispatch(removeTrash(id));
-        dispatch(addPoints(1));
+      if (path[index]) {
+        const { x, y } = path[index];
+        if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height) {
+          console.log('click');
+          dispatch(removeTrash(id));
+          dispatch(addPoints(1));
+        }
       }
     });
   }
